@@ -57,11 +57,17 @@ print(r)
 Web3 object w3 will hold the ip and port once you set.   
 w3 method will use the ip and port you set until you reset it.
 ## sub packages
-- jsonrpc
-- eth
-- web3
-- net
-- admin
-- admmin_net
-- debug
-- test
+- jsonrpc  
+- eth  
+- web3  
+TODO
+- net  
+TODO
+- admin  
+TODO
+- admmin_net  
+TODO
+- debug  
+TODO
+- test  
+TODO
