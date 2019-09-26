@@ -40,14 +40,24 @@ def getBlockTransactionCountByHash():
     print(r)
 
 
-def getBlockByNumber():
-    r = eth.getBlockByNumber('pending')
+def getBlockByNumber(num):
+    r = eth.getBlockByNumber(num)
     print(r)
 
 
-def getBlockByHash():
-    block = eth.getBlockByNumber('latest')
-    hash = block['hash']
+def getDagBlockByHash(hash):
+    r = eth.getDagBlockByHash(hash)
+    print(r)
+
+
+def getDagBlockByLevel():
+    r = eth.getDagBlockByLevel("latest")
+    print(r)
+
+
+def getBlockByHash(hash):
+    # block = eth.getBlockByHash(hash)
+    # hash = block['hash']
     r = eth.getBlockByHash(hash)
     print(r)
 
@@ -80,4 +90,7 @@ if __name__ == "__main__":
     #print(r)
     #print("=====number:%s" % eth.blockNumber())
     #get_all_balance()
-    sendTransaction()
+    getBlockByNumber("0x3")
+    #getBlockByHash("0x6ae92277d2f7fe95dc5119d21ef77522c72dd09264e22294d464de1bacb61319")
+    #getDagBlockByHash("0x6ae92277d2f7fe95dc5119d21ef77522c72dd09264e22294d464de1bacb61319")
+    #getDagBlockByLevel()

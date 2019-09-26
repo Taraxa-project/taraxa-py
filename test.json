@@ -1,0 +1,26 @@
+{
+    "period": 3,
+    "block_order": [
+        {
+            "hash": "0x77320ad5c2671435853c9d1a66eb8da95aa63677ffaa0d1d043060c2d4bfad70",
+            "number": 10
+        },
+        {
+            "hash": "0x5892c494aef01f568b1d227885180aafcaa67364a18c5776b0566a69952a128d",
+            "number": 11
+        }
+      ...
+    ]
+}
+
+or
+
+{
+    "period": 3,
+    "block_order": [
+        "0x77320ad5c2671435853c9d1a66eb8da95aa63677ffaa0d1d043060c2d4bfad70",
+        "0x5892c494aef01f568b1d227885180aafcaa67364a18c5776b0566a69952a128d",
+        ...
+    ],
+    "nubmer": 10
+}

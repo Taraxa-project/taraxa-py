@@ -60,7 +60,6 @@ w3 method will use the ip and port you set until you reset it.
 - jsonrpc  
 - eth  
 - web3  
-TODO
 - net  
 TODO
 - admin  

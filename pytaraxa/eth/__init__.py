@@ -38,3 +38,5 @@ from .methods import getWork
 from .methods import submitWork
 from .methods import submitHashrate
 from .methods import getProof
+from .methods import getDagBlockByLevel
+from .methods import getDagBlockByHash

@@ -12,7 +12,7 @@ AUTHOR_EMAIL = "kai.he@taraxa.io"
 
 URL = "http://taraxa.io"
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 LICENSE = "MIT"
 

@@ -5,6 +5,27 @@ Node_ip = "0.0.0.0"
 Node_port = 7777
 
 
+def tag_check(tag):
+    # "latest"
+    # '10'
+    # '0xa'
+    # 10
+    # 0xa
+    if type(tag) == str:
+        try:
+            tag = hex(int(tag))
+        except ValueError:
+            try:
+                tag = hex(int(tag, 16))  #16进制字符'0xa'
+            except:
+                tag = tag
+
+    elif type(tag) == int:
+        tag = hex(int(tag))
+
+    return tag
+
+
 def send(data, node_ip=Node_ip, node_port=Node_port):
     if type(data) == dict:
         data = json.dumps(data)
@@ -15,6 +36,7 @@ def send(data, node_ip=Node_ip, node_port=Node_port):
         return None
 
     try:
+        print(data)
         request = requests.post("http://{}:{}".format(node_ip, node_port), data=data)
     except Exception as e:
         print(e)
@@ -117,6 +139,7 @@ def eth_accounts(**kwargs):
 
 @traxa_rpc
 def eth_getBalance(address, tag="latest", **kwargs):
+    tag = tag_check(tag)
     params = [address, tag]
     return params
 
@@ -129,12 +152,14 @@ def eth_blockNumber(**kwargs):
 
 @traxa_rpc
 def eth_getStorageAt(address, position, tag="latest", **kwargs):
+    tag = tag_check(tag)
     params = [address, position, tag]
     return params
 
 
 @traxa_rpc
 def eth_getTransactionCount(address, tag="latest", **kwargs):
+    tag = tag_check(tag)
     params = [address, tag]
     return params
 
@@ -147,6 +172,7 @@ def eth_getBlockTransactionCountByHash(hash, **kwargs):
 
 @traxa_rpc
 def eth_getBlockTransactionCountByNumber(tag, **kwargs):
+    tag = tag_check(tag)
     params = [tag]
     return params
 
@@ -159,12 +185,14 @@ def eth_getUncleCountByBlockHash(hash, **kwargs):
 
 @traxa_rpc
 def eth_getUncleCountByBlockNumber(tag, **kwargs):
+    tag = tag_check(tag)
     params = [tag]
     return params
 
 
 @traxa_rpc
 def eth_getCode(address, tag, **kwargs):
+    tag = tag_check(tag)
     params = [address, tag]
     return params
 
@@ -172,6 +200,7 @@ def eth_getCode(address, tag, **kwargs):
 # TODO
 @traxa_rpc
 def eth_sign(address, data, tag="latest", **kwargs):
+    tag = tag_check(tag)
     params = [address, data]
     return params
 
@@ -185,6 +214,7 @@ def eth_sendTransaction(trx, **kwargs):
 
 @traxa_rpc
 def eth_sendRawTransaction(trx, tag="latest", **kwargs):
+    tag = tag_check(tag)
     params = [trx]
     return params
 
@@ -192,6 +222,7 @@ def eth_sendRawTransaction(trx, tag="latest", **kwargs):
 # TODO
 @traxa_rpc
 def eth_call(trx, tag, **kwargs):
+    tag = tag_check(tag)
     params = [
         {
             # "from": trx['from'],
@@ -209,6 +240,7 @@ def eth_call(trx, tag, **kwargs):
 # TODO
 @traxa_rpc
 def eth_estimateGas(trx, tag, **kwargs):
+    tag = tag_check(tag)
     params = [
         {
             # "from": trx['from'],
@@ -230,7 +262,21 @@ def eth_getBlockByHash(hash, fullTransactions=False, **kwargs):
 
 
 @traxa_rpc
+def eth_getDagBlockByHash(hash, fullTransactions=False, **kwargs):
+    params = [hash, fullTransactions]
+    return params
+
+
+@traxa_rpc
+def eth_getDagBlockByLevel(tag, fullTransactions=False, **kwargs):
+    tag = tag_check(tag)
+    params = [tag, fullTransactions]
+    return params
+
+
+@traxa_rpc
 def eth_getBlockByNumber(tag, fullTransactions=False, **kwargs):
+    tag = tag_check(tag)
     params = [tag, fullTransactions]
     return params
 
@@ -249,6 +295,7 @@ def eth_getTransactionByBlockHashAndIndex(hash, index, **kwargs):
 
 @traxa_rpc
 def eth_getTransactionByBlockNumberAndIndex(tag, index, **kwargs):
+    tag = tag_check(tag)
     params = [tag, index]
     return params
 
@@ -273,6 +320,7 @@ def eth_getUncleByBlockHashAndIndex(hash, index, **kwargs):
 
 @traxa_rpc
 def eth_getUncleByBlockNumberAndIndex(tag, index, **kwargs):
+    tag = tag_check(tag)
     params = [tag, index]
     return params
 
@@ -339,6 +387,7 @@ def eth_submitHashrate(hash_rate, id, **kwargs):
 
 @traxa_rpc
 def eth_getProof(address, storage_keys, tag, **kwargs):
+    tag = tag_check(tag)
     params = [address, storage_keys, tag]
     return params
 
@@ -397,48 +446,38 @@ def eth_unregister(**kwargs):
 
 
 @traxa_rpc
-def taraxa_fetchQueuedTransactions(**kwargs):
+def eth_fetchQueuedTransactions(**kwargs):
     params = []
     return params
 
 
 @traxa_rpc
-def taraxa_signTransaction(**kwargs):
+def eth_signTransaction(**kwargs):
     params = []
     return params
 
 
 @traxa_rpc
-def taraxa_inspectTransaction(**kwargs):
+def eth_inspectTransaction(**kwargs):
     params = []
     return params
 
 
 @traxa_rpc
-def taraxa_notePassword(**kwargs):
+def eth_notePassword(**kwargs):
     params = []
     return params
 
 
 @traxa_rpc
-def taraxa_chainId(**kwargs):
-    params = []
-    return params
-
-
-def taraxa_getDagBlockByHash(**kwargs):
-    params = []
-    return params
-
-
-@traxa_rpc
-def taraxa_getDagBlockByLevel(**kwargs):
+def eth_chainId(**kwargs):
     params = []
     return params
 
 
 @traxa_rpc
 def eth_signTransaction(address, data, tag="latest", **kwargs):
+    tag = tag_check(tag)
     params = [address, data]
     return params
 
@@ -452,5 +491,8 @@ if __name__ == "__main__":
     # r = eth_getBlockByHash('0x1571a0204e280d854d1c26821f4a77936745a9d9b869fcf7f18d3f6db74d42ce',
     #                        True)
     # print(r['result'])
-    trx = {'a': 1}
-    r = eth_sendTransaction(trx, ip='333.333')
+    #trx = {'a': 1}
+    #r = eth_sendTransaction(trx, ip='333.333')
+    tags = ["latest", '10', '0xa', 10, 0xa]
+    for t in tags:
+        print(tag_check(t))
