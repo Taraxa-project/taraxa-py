@@ -31,7 +31,7 @@ def traxa_rpc_ws(func):
         trx = json_trx(jsonrpc, method, params, id)
 
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(ws_rpc(trx, callback, node_ip=ip, node_port=port))
+        loop.run_until_complete(ws_rpc(trx, callback, ip=ip, port=port))
 
     return wrap_func
 

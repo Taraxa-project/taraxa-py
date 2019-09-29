@@ -8,7 +8,7 @@ from .http_taraxa import *
 from .http_web3 import *
 from .http_net import *
 
-from ._websocket import eth_subscribe
-from ._websocket import newDagBlocks
-from ._websocket import newScheduleBlocks
-from ._websocket import newDagBlocksFinalized
+from .websocket import eth_subscribe
+from .websocket import newDagBlocks
+from .websocket import newScheduleBlocks
+from .websocket import newDagBlocksFinalized

@@ -88,4 +88,5 @@ def getDagBlockByLevel():
 
 
 if __name__ == "__main__":
-    get_all_balance()
+    #get_all_balance()
+    getBlockByNumber(1)

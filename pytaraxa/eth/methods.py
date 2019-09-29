@@ -124,7 +124,6 @@ def getBlockByHash(hash, fullTransactions=False, **kwargs):
 
 def getBlockByNumber(tag, fullTransactions=False, **kwargs):
     r = eth_getBlockByNumber(tag, fullTransactions, **kwargs)
-    print(r)
     block = r['result']
     block_key_number = [
         'difficulty', 'gasUsed', 'nonce', 'number', 'size', 'timestamp', 'totalDifficulty'
