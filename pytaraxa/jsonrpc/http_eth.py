@@ -1,104 +1,5 @@
-import requests
-import json
-
-Node_ip = "0.0.0.0"
-Node_port = 7777
-
-
-def tag_check(tag):
-    # "latest"
-    # '10'
-    # '0xa'
-    # 10
-    # 0xa
-    if type(tag) == str:
-        try:
-            tag = hex(int(tag))
-        except ValueError:
-            try:
-                tag = hex(int(tag, 16))  #16进制字符'0xa'
-            except:
-                tag = tag
-
-    elif type(tag) == int:
-        tag = hex(int(tag))
-
-    return tag
-
-
-def send(data, node_ip=Node_ip, node_port=Node_port):
-    if type(data) == dict:
-        data = json.dumps(data)
-    elif type(data) == str:
-        pass
-    else:
-        print('send data must be json string or dict')
-        return None
-
-    try:
-        print(data)
-        request = requests.post("http://{}:{}".format(node_ip, node_port), data=data)
-    except Exception as e:
-        print(e)
-        request = None
-    return request
-
-
-def message(jsonrpc, method, params, id):
-    trx = {"jsonrpc": jsonrpc, "method": method, "params": params, "id": id}
-    return json.dumps(trx)
-
-
-def traxa_rpc(func):
-
-    def wrap_func(*args, **kwargs):
-        #要提交的参数
-        jsonrpc = kwargs.get("jsonrpc", "2.0")  #默认参数
-        method = func.__name__  #jsonrpc方法名同函数名
-        params = func(*args, **kwargs)
-        id = kwargs.get("id", 1)  #默认参数
-        msg = message(jsonrpc, method, params, id)
-
-        #要提交的节点
-        ip = kwargs.get("ip", Node_ip)
-        port = kwargs.get("port", Node_port)
-        r = send(msg, ip, port)
-
-        return r.json()
-
-    return wrap_func
-
-
-# TODO
-@traxa_rpc
-def web3_clientVersion(**kwargs):
-    params = []
-    return params
-
-
-# TODO
-@traxa_rpc
-def web3_sha3(data, **kwargs):
-    params = [data]
-    return params
-
-
-@traxa_rpc
-def net_version(**kwargs):
-    params = []
-    return params
-
-
-@traxa_rpc
-def net_peerCount(**kwargs):
-    params = []
-    return params
-
-
-@traxa_rpc
-def net_listening(**kwargs):
-    params = []
-    return params
+from . import Node_ip, Node_port
+from .utl import send, message, tag_check, traxa_rpc
 
 
 @traxa_rpc
@@ -258,19 +159,6 @@ def eth_estimateGas(trx, tag, **kwargs):
 @traxa_rpc
 def eth_getBlockByHash(hash, fullTransactions=False, **kwargs):
     params = [hash, fullTransactions]
-    return params
-
-
-@traxa_rpc
-def eth_getDagBlockByHash(hash, fullTransactions=False, **kwargs):
-    params = [hash, fullTransactions]
-    return params
-
-
-@traxa_rpc
-def eth_getDagBlockByLevel(tag, fullTransactions=False, **kwargs):
-    tag = tag_check(tag)
-    params = [tag, fullTransactions]
     return params
 
 
@@ -479,6 +367,19 @@ def eth_chainId(**kwargs):
 def eth_signTransaction(address, data, tag="latest", **kwargs):
     tag = tag_check(tag)
     params = [address, data]
+    return params
+
+
+@traxa_rpc
+def eth_getDagBlockByHash(hash, fullTransactions=False, **kwargs):
+    params = [hash, fullTransactions]
+    return params
+
+
+@traxa_rpc
+def eth_getDagBlockByLevel(tag, fullTransactions=False, **kwargs):
+    tag = tag_check(tag)
+    params = [tag, fullTransactions]
     return params
 
 

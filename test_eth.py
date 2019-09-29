@@ -1,5 +1,6 @@
 from pytaraxa import eth
-
+from pytaraxa import taraxa
+import pytaraxa.jsonrpc as rpc
 node_address = [
     "de2b1203d72d3549ee2f733b00b2789414c7cea5", "973ecb1c08c8eb5a7eaa0d3fd3aab7924f2838b0",
     "4fae949ac2b72960fbe857b56532e2d3c8418d5e", "415cf514eb6a5a8bd4d325d4874eae8cf26bcfe0",
@@ -45,16 +46,6 @@ def getBlockByNumber(num):
     print(r)
 
 
-def getDagBlockByHash(hash):
-    r = eth.getDagBlockByHash(hash)
-    print(r)
-
-
-def getDagBlockByLevel():
-    r = eth.getDagBlockByLevel("latest")
-    print(r)
-
-
 def getBlockByHash(hash):
     # block = eth.getBlockByHash(hash)
     # hash = block['hash']
@@ -85,12 +76,16 @@ def get_all_balance():
         print(eth.getBalance(add))
 
 
+#=============
+def getDagBlockByHash(hash):
+    r = eth.getDagBlockByHash(hash)
+    print(r)
+
+
+def getDagBlockByLevel():
+    r = eth.getDagBlockByLevel("latest")
+    print(r)
+
+
 if __name__ == "__main__":
-    #r = sendTransaction()
-    #print(r)
-    #print("=====number:%s" % eth.blockNumber())
-    #get_all_balance()
-    getBlockByNumber("0x3")
-    #getBlockByHash("0x6ae92277d2f7fe95dc5119d21ef77522c72dd09264e22294d464de1bacb61319")
-    #getDagBlockByHash("0x6ae92277d2f7fe95dc5119d21ef77522c72dd09264e22294d464de1bacb61319")
-    #getDagBlockByLevel()
+    get_all_balance()

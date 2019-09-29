@@ -1,4 +1,4 @@
-from ..jsonrpc._http import *
+from ..jsonrpc.http_eth import *
 
 
 def syncing(**kwargs):
@@ -109,20 +109,6 @@ def call(trx, tag, **kwargs):
 def estimateGas(trx, tag, **kwargs):
     r = eth_estimateGas(trx, tag, **kwargs)
     return r
-
-
-def getDagBlockByHash(hash, fullTransactions=False, **kwargs):
-    r = eth_getDagBlockByHash(hash, fullTransactions, **kwargs)
-    print(r)
-    block = r['result']
-    return block
-
-
-def getDagBlockByLevel(tag, fullTransactions=False, **kwargs):
-    r = eth_getDagBlockByLevel(tag, fullTransactions, **kwargs)
-    print(r)
-    block = r['result']
-    return block
 
 
 def getBlockByHash(hash, fullTransactions=False, **kwargs):

@@ -6,8 +6,8 @@ Node_ip = "0.0.0.0"
 Node_port = 8777
 
 
-async def ws_rpc(data, callback, node_ip=Node_ip, node_port=Node_port):
-    ws = await websockets.connect('ws://' + node_ip + ':' + str(node_port))
+async def ws_rpc(data, callback, ip=Node_ip, port=Node_port):
+    ws = await websockets.connect('ws://' + ip + ':' + str(port))
     await ws.send(data)
     async for message in ws:
         data = json.loads(message)

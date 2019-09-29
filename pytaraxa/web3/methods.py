@@ -1,4 +1,4 @@
-from ..jsonrpc.http import *
+from ..jsonrpc.http_web3 import *
 
 
 def clientVersion():

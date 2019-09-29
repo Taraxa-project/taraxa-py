@@ -1,4 +1,4 @@
-from ..jsonrpc.trx3 import *
+from ..jsonrpc.http_net import *
 
 
 def version():
