@@ -23,7 +23,7 @@ def getDagBlockByHash(hash):
 
 
 def getDagBlockByLevel():
-    r = taraxa.getDagBlockByLevel("latest")
+    r = taraxa.getDagBlockByLevel("latest", ip='34.66.1.140')
     print(r)
 
 
@@ -33,4 +33,4 @@ def blockNumber():
 
 
 if __name__ == "__main__":
-    blockNumber()
+    getDagBlockByLevel()
