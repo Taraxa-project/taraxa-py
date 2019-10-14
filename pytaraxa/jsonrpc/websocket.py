@@ -7,11 +7,16 @@ Node_port = 8777
 
 
 async def ws_rpc(data, callback, ip=Node_ip, port=Node_port):
-    ws = await websockets.connect('ws://' + ip + ':' + str(port))
-    await ws.send(data)
-    async for message in ws:
-        data = json.loads(message)
-        callback(data)
+    while True:
+        ws = await websockets.connect('ws://' + ip + ':' + str(port))
+        await ws.send(data)
+        try:
+            async for message in ws:
+                _data = json.loads(message)
+                callback(_data)
+        except:
+            print('\n<= 0 reconnect: %s\n' % data)
+            await asyncio.sleep(0.1)
 
 
 def json_trx(jsonrp, method, params, id):

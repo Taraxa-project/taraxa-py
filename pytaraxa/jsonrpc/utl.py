@@ -33,11 +33,10 @@ def send(data, ip=Node_ip, port=Node_port):
         print('send data must be json string or dict')
         return None
 
-    try:
-        request = requests.post("http://{}:{}".format(ip, port), data=data)
-    except Exception as e:
-        print(e)
-        request = None
+    request = requests.post("http://{}:{}".format(ip, port), data=data)
+    # except Exception as e:
+    #     print(e)
+    #     request = None
     return request
 
 
@@ -60,7 +59,6 @@ def traxa_rpc(func):
         ip = kwargs.get("ip", Node_ip)
         port = kwargs.get("port", Node_port)
         r = send(msg, ip, port)
-
         return r.json()
 
     return wrap_func

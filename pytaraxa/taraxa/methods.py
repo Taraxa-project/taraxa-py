@@ -1,18 +1,33 @@
 from ..jsonrpc.http_taraxa import *
 
 
+def block_hex2int(block):
+    keys = ['level', 'period', 'number', 'timestamp']
+    for key in keys:
+        block[key] = int(block[key], 16)
+    return block
+
+
 def getDagBlockByHash(hash, fullTransactions=False, **kwargs):
     r = taraxa_getDagBlockByHash(hash, fullTransactions, **kwargs)
-    print(r)
     block = r['result']
-    return block
+    if 'result' in r:
+        block = r['result']
+        if block:
+            block = block_hex2int(block)
+        return block
+    else:
+        raise Exception(r["error"])
 
 
 def getDagBlockByLevel(tag, fullTransactions=False, **kwargs):
     r = taraxa_getDagBlockByLevel(tag, fullTransactions, **kwargs)
-    print(r)
-    block = r['result']
-    return block
+    if 'result' in r:
+        blocks = r['result']
+        blocks = list(map(lambda block: block_hex2int(block), blocks))
+        return blocks
+    else:
+        raise Exception(r["error"])
 
 
 def dagBlockLevel(**kwargs):

@@ -18,8 +18,8 @@ def getBalance():
     print(r)
 
 
-def blockNumber():
-    r = eth.blockNumber()
+def blockNumber(ip):
+    r = eth.blockNumber(ip=ip)
     print(r)
 
 
@@ -28,7 +28,7 @@ def getStorageAt():
     print(r)
 
 
-def getTransactionCount():
+def getTransactionCount(address):
     r = eth.getTransactionCount(address, 1)
     print(r)
 
@@ -49,7 +49,7 @@ def getBlockByNumber(num):
 def getBlockByHash(hash):
     # block = eth.getBlockByHash(hash)
     # hash = block['hash']
-    r = eth.getBlockByHash(hash)
+    r = eth.getBlockByHash(hash, fullTransactions=True)
     print(r)
 
 
@@ -89,4 +89,7 @@ def getDagBlockByLevel():
 
 if __name__ == "__main__":
     #get_all_balance()
-    getBlockByNumber(1)
+    #getBlockByNumber(1)
+    #hash = '0xde804c1b7d2f24e6ae93aecb7f4868b95bea99c48999d378c739622456d490c1'
+    #getBlockByHash(hash)
+    blockNumber(ip='35.224.183.106')

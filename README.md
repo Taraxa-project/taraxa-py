@@ -1,9 +1,15 @@
 # pytaraxa
 
-taraxa python rpc client
+taraxa python rpc client. 
+
+Taraxa official website: [taraxa.io]("https://taraxa.io")
 ## install
 ```
 python setup.py install
+```
+or
+```
+pip install pytaraxa
 ```
 ## usage
 

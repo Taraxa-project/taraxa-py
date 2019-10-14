@@ -2,9 +2,8 @@ from ..jsonrpc.http_eth import *
 
 
 def syncing(**kwargs):
-    r = eth_blockNumber(**kwargs)
-    number = int(r['result'], 16)
-    return number
+    r = eth_syncing(**kwargs)
+    return r['result']
 
 
 def coinbase(**kwargs):

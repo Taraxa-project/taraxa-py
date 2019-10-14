@@ -1,5 +1,8 @@
 from setuptools import setup, find_namespace_packages
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 NAME = "pytaraxa"
 
 DESCRIPTION = "Taraxa blockchain  RPC client."
@@ -18,7 +21,7 @@ LICENSE = "MIT"
 
 setup(
     name=NAME,
-    version='0.0.1',
+    version='0.0.2',
     python_requires='>=3.7',
     install_requires=[],
     classifiers=[
@@ -31,6 +34,9 @@ setup(
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     url=URL,
+    description=DESCRIPTION,
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     license=LICENSE,
     packages=find_namespace_packages(),
     include_package_data=True,
