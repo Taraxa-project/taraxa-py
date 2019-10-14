@@ -65,7 +65,7 @@ def getBlockTransactionCountByHash(hash, **kwargs):
     return number
 
 
-def getBlockTransactionCountByNumber(tag, **kwargs):
+def getBlockTransactionCountByNumber(tag="latest", **kwargs):
     r = eth_getBlockTransactionCountByNumber(tag, **kwargs)
     return r['result']
 
@@ -75,12 +75,12 @@ def getUncleCountByBlockHash(hash, **kwargs):
     return r['result']
 
 
-def getUncleCountByBlockNumber(tag, **kwargs):
+def getUncleCountByBlockNumber(tag="latest", **kwargs):
     r = eth_getUncleCountByBlockNumber(tag, **kwargs)
     return r['result']
 
 
-def getCode(address, tag, **kwargs):
+def getCode(address, tag="latest", **kwargs):
     r = eth_getCode(address, tag, **kwargs)
     return r['result']
 
@@ -100,12 +100,12 @@ def sendRawTransaction(trx, **kwargs):
     return r['result']
 
 
-def call(trx, tag, **kwargs):
+def call(trx, tag="latest", **kwargs):
     r = eth_call(trx, **kwargs)
     return r
 
 
-def estimateGas(trx, tag, **kwargs):
+def estimateGas(trx, tag="latest", **kwargs):
     r = eth_estimateGas(trx, tag, **kwargs)
     return r
 

@@ -15,8 +15,10 @@ def read_to_write_class():
             l1 = '    ' + l.replace('(', '(self,')
             l2 = l.replace('def ', '        eth.').replace(
                 '**kwargs', 'ip=self.ip, port=self.port,**kwargs').replace(':', '')
-            print(l1)
-            print(l2)
+            l3 = l.replace('def ', 'eth.').replace(', **kwargs', '').replace('**kwargs',
+                                                                             '').replace(':', '')
+            #print(l1)
+            print(l3)
 
 
 if __name__ == "__main__":

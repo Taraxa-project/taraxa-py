@@ -21,7 +21,7 @@ LICENSE = "MIT"
 
 setup(
     name=NAME,
-    version='0.0.2',
+    version=VERSION,
     python_requires='>=3.7',
     install_requires=[],
     classifiers=[
