@@ -2,7 +2,7 @@
 
 taraxa python rpc client. 
 
-Taraxa official website: [taraxa.io]("https://taraxa.io")
+Taraxa official website: [taraxa.io](https://taraxa.io)
 ## install
 ```
 python setup.py install
