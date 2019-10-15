@@ -7,6 +7,8 @@ pytaraxa pypi address: [pytaraxa](https://pypi.org/project/pytaraxa/)
 Taraxa official website: [taraxa.io](https://taraxa.io)  
 ## install
 ```
+git clone https://github.com/Taraxa-project/taraxa-py
+cd taraxa-py
 python setup.py install
 ```
 or
