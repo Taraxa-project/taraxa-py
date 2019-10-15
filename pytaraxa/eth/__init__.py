@@ -1,3 +1,4 @@
+from ..jsonrpc import set, reset
 from .methods import syncing
 from .methods import coinbase
 from .methods import mining

@@ -18,8 +18,8 @@ def getBalance():
     print(r)
 
 
-def blockNumber(ip):
-    r = eth.blockNumber(ip=ip)
+def blockNumber():
+    r = eth.blockNumber(ip="35.224.183.106")
     print(r)
 
 
@@ -92,4 +92,9 @@ if __name__ == "__main__":
     #getBlockByNumber(1)
     #hash = '0xde804c1b7d2f24e6ae93aecb7f4868b95bea99c48999d378c739622456d490c1'
     #getBlockByHash(hash)
-    blockNumber(ip='35.224.183.106')
+    #eth.set({"ip": "35.224.183.106"})
+    try:
+        blockNumber()
+        accounts()
+    except Exception as e:
+        print(e)
