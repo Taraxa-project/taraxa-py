@@ -1,8 +1,10 @@
 # pytaraxa
 
-Taraxa RPC client in python. 
+Taraxa RPC client in python.  
 
-Taraxa official website: [taraxa.io](https://taraxa.io)
+pytaraxa pypi address: [pytaraxa](https://pypi.org/project/pytaraxa/)  
+
+Taraxa official website: [taraxa.io](https://taraxa.io)  
 ## install
 ```
 python setup.py install
