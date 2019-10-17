@@ -45,7 +45,7 @@ async def send_ws(data, callback, ip="", port=0):
 
     while True:
         ws = await websockets.connect('ws://' + ip + ':' + str(port))
-        await ws.send_ws(data)
+        await ws.send(data)
         try:
             async for msg in ws:
                 _data = json.loads(msg)
