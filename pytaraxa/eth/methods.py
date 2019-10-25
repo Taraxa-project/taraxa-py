@@ -18,7 +18,7 @@ def mining(**kwargs):
 
 def hashrate(**kwargs):
     r = eth_hashrate(**kwargs)
-    number = int(r['result'], 16)
+    number = hex2int(r['result'])
     return number
 
 
@@ -35,13 +35,13 @@ def accounts(**kwargs):
 
 def getBalance(address, tag="latest", **kwargs):
     r = eth_getBalance(address, tag)
-    number = int(r['result'], 16)
+    number = hex2int(r['result'])
     return number
 
 
 def blockNumber(**kwargs):
     r = eth_blockNumber(**kwargs)
-    number = int(r['result'], 16)
+    number = hex2int(r['result'])
     return number
 
 
@@ -54,14 +54,14 @@ def getStorageAt(address, position, tag="latest", **kwargs):
 #no in taraxa rpc
 def getTransactionCount(address, tag="latest", **kwargs):
     r = eth_getTransactionCount(address, tag, **kwargs)
-    number = int(r['result'], 16)
+    number = hex2int(r['result'])
     return number
 
 
 #no in taraxa rpc
 def getBlockTransactionCountByHash(hash, **kwargs):
     r = eth_getTransactionCount(hash, **kwargs)
-    number = int(r['result'], 16)
+    number = hex2int(r['result'])
     return number
 
 
@@ -113,22 +113,26 @@ def estimateGas(trx, tag="latest", **kwargs):
 def getBlockByHash(hash, fullTransactions=False, **kwargs):
     r = eth_getBlockByHash(hash, fullTransactions, **kwargs)
     block = r['result']
+    if not block:
+        return block
     block_key_number = [
         'difficulty', 'gasUsed', 'nonce', 'number', 'size', 'timestamp', 'totalDifficulty'
     ]
     for key in block_key_number:
-        block[key] = int(block[key], 16)
+        block[key] = hex2int(block[key])
     return block
 
 
 def getBlockByNumber(tag, fullTransactions=False, **kwargs):
     r = eth_getBlockByNumber(tag, fullTransactions, **kwargs)
     block = r['result']
+    if not block:
+        return block
     block_key_number = [
         'difficulty', 'gasUsed', 'nonce', 'number', 'size', 'timestamp', 'totalDifficulty'
     ]
     for key in block_key_number:
-        block[key] = int(block[key], 16)
+        block[key] = hex2int(block[key])
     return block
 
 

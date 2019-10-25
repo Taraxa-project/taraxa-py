@@ -1,3 +1,10 @@
+def hex2int(s):
+    if s == '':
+        return -1
+    n = int(s, 16)
+    return n
+
+
 def tag_check(tag):
     # tag data type:"latest",'10','0xa',10,0xa
     if type(tag) == str:

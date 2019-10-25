@@ -8,7 +8,7 @@ def version():
 
 def peerCount():
     r = net_peerCount()
-    number = int(r['result'], 16)
+    number = hex2int(r['result'])
     return number
 
 

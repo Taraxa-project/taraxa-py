@@ -50,7 +50,8 @@ async def send_ws(data, callback, ip="", port=0):
             async for msg in ws:
                 _data = json.loads(msg)
                 callback(_data)
-        except:
+        except Exception as e:
+            print(e)
             print('\n<= 0 reconnect: %s\n' % data)
             await asyncio.sleep(0.1)
 

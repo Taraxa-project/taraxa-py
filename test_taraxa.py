@@ -18,21 +18,25 @@ def dagBlockPeriod():
     print(r)
 
 
-def getDagBlockByHash(hash):
-    b = taraxa.getDagBlockByHash(hash, ip='35.224.183.106')
+def getDagBlockByHash(hash, ip):
+    b = taraxa.getDagBlockByHash(hash)
     #print(b)
     print(' period: ', b['period'], ' level: ', b['level'], ' number: ', b['number'], ' hash: ',
           b['hash'])
 
 
-def getDagBlockByLevel(ip='35.224.183.106'):
-    r = taraxa.getDagBlockByLevel('200', ip=ip)
+def getDagBlockByLevel(level):
+    r = taraxa.getDagBlockByLevel(level)
     if r:
         for b in r:
-            print(' period: ', b['period'], ' level: ', b['level'], ' number: ', b['number'],
+            print('dag   period: ', b['period'], ' level: ', b['level'], ' number: ', b['number'],
                   ' hash: ', b['hash'])
-            _b = eth.getBlockByHash(b['hash'], ip=ip)
-            print(' number: ', _b['number'], ' hash: ', _b['hash'])
+            _b = eth.getBlockByHash(b['hash'])
+            if _b:
+                print('block number: ', _b['number'], ' hash: ', _b['hash'])
+            else:
+                print('block no such block, hash:', b['hash'])
+            print()
 
 
 def blockNumber():
@@ -44,7 +48,11 @@ if __name__ == "__main__":
     #dagBlockLevel()
     #dagBlockPeriod()
     #hash = '0x841a0296cf0afc3f5c281593af4528cf840744f6589760cdad9bed0fb3af477b'
-    #getDagBlockByLevel()
+    #getDagBlockByLevel(24)
     #hash = '0x326f8020ccd18e8ce783158926214a4ab1805b89855f80afb67a0dbe7bf385e3'
-    hash = '0x9bafbda1b11331c4a3008cc67d88ea64224e2acc48a74149ac630b3b53d0cc98'
-    getDagBlockByHash(hash)
+    #hash = '0x2ff42ffa70987bdacd5a9818b31d264c7967cb0f9396ff20994e01661bd99663'
+    #getDagBlockByHash(hash, ip='127.0.0.1')
+    block = eth.getBlockByHash(
+        '0xb0bdf5bf044fde7d5ec9633e82ff08a1e689aa63fea65af6ec655e91e1cb4d4b',
+        fullTransactions=True)
+    print(block)
