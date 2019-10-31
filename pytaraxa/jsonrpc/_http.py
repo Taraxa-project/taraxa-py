@@ -1,6 +1,7 @@
 from . import NODE_IP, NODE_PORT, JSONRPC, ID
 import requests
 import json
+import logging
 
 
 class Config():
@@ -47,6 +48,7 @@ def send(data, ip="", port=0):
         pass
     else:
         raise Exception('send data must be json string or dict')
+
     request = requests.post("http://{}:{}".format(ip, port), data=data)
     return request
 

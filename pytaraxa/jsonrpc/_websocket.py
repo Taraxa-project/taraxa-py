@@ -2,6 +2,7 @@ import json
 import asyncio
 import websockets
 from . import NODE_WS_IP, NODE_WS_PORT, JSONRPC, ID
+import logging
 
 
 class Config():
@@ -44,16 +45,19 @@ async def send_ws(data, callback, ip="", port=0):
         port = config.port
 
     while True:
-        ws = await websockets.connect('ws://' + ip + ':' + str(port))
-        await ws.send(data)
         try:
-            async for msg in ws:
-                _data = json.loads(msg)
-                callback(_data)
-        except Exception as e:
-            print(e)
-            print('\n<= 0 reconnect: %s\n' % data)
-            await asyncio.sleep(0.1)
+            async with websockets.connect('ws://' + ip + ':' + str(port)) as ws:
+                await ws.send(data)
+                try:
+                    async for msg in ws:
+                        _data = json.loads(msg)
+                        callback(_data)
+                except ConnectionRefusedError as e:
+                    logging.info('lose connection,reconnect %s second later.\n%s' % (0.5, data))
+                    await asyncio.sleep(0.5)
+        except ConnectionRefusedError as e:
+            logging.info('connect fail,try again %s second later.\n%s' % (0.5, data))
+            await asyncio.sleep(0.5)
 
 
 def message_ws(jsonrp, method, params, id):
@@ -82,6 +86,10 @@ def traxa_rpc_ws(func):
 def eth_subscribe(action, callback, **kwargs):
     params = [action]
     return params, callback
+
+
+def newOrderedBlock(callback, **kwargs):
+    eth_subscribe("newOrderedBlock", callback, **kwargs)
 
 
 def newDagBlocks(callback, **kwargs):

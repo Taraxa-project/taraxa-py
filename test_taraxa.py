@@ -48,11 +48,11 @@ if __name__ == "__main__":
     #dagBlockLevel()
     #dagBlockPeriod()
     #hash = '0x841a0296cf0afc3f5c281593af4528cf840744f6589760cdad9bed0fb3af477b'
-    #getDagBlockByLevel(24)
+    #getDagBlockByLevel(3)
     #hash = '0x326f8020ccd18e8ce783158926214a4ab1805b89855f80afb67a0dbe7bf385e3'
-    #hash = '0x2ff42ffa70987bdacd5a9818b31d264c7967cb0f9396ff20994e01661bd99663'
-    #getDagBlockByHash(hash, ip='127.0.0.1')
-    block = eth.getBlockByHash(
-        '0xb0bdf5bf044fde7d5ec9633e82ff08a1e689aa63fea65af6ec655e91e1cb4d4b',
-        fullTransactions=True)
-    print(block)
+    hash = '0x478d82494a35aa2fb4eb6b6dd73b405eef37387c2873f4740a0fd3c14e811708'
+    getDagBlockByHash(hash, ip='127.0.0.1')
+    # block = eth.getBlockByHash(
+    #     '0xb0bdf5bf044fde7d5ec9633e82ff08a1e689aa63fea65af6ec655e91e1cb4d4b',
+    #     fullTransactions=True)
+    # print(block)

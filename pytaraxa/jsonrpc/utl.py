@@ -1,8 +1,11 @@
-def hex2int(s):
-    if s == '':
+def hex2int(hex):
+    if hex == '':
         return -1
-    n = int(s, 16)
-    return n
+    if type(hex) == int:
+        return hex
+    if type(hex) == str:
+        return int(hex, 16)
+    return hex
 
 
 def tag_check(tag):
