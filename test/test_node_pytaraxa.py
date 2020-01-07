@@ -3,7 +3,7 @@ from test.config import *
 
 from pytaraxa import eth
 
-eth.set({"ip": "64.225.42.78"})
+eth.set({"host": "64.225.42.78"})
 
 r = eth.blockNumber()
 print(r)

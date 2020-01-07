@@ -393,7 +393,7 @@ if __name__ == "__main__":
     #                        True)
     # print(r['result'])
     #trx = {'a': 1}
-    #r = eth_sendTransaction(trx, ip='333.333')
+    #r = eth_sendTransaction(trx, host='333.333')
     tags = ["latest", '10', '0xa', 10, 0xa]
     for t in tags:
         print(tag_check(t))

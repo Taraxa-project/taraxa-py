@@ -14,10 +14,10 @@ def read_to_write_class():
         if l.startswith('def'):
             l1 = '    ' + l.replace('(', '(self,')
             l2 = l.replace('def ', '        eth.').replace(
-                '**kwargs', 'ip=self.ip, port=self.port,**kwargs').replace(':', '')
+                '**kwargs', 'host=self.host, port=self.port,**kwargs').replace(':', '')
             l3 = l.replace('def ', 'eth.').replace(', **kwargs', '').replace('**kwargs',
                                                                              '').replace(':', '')
-            #print(l1)
+            # print(l1)
             print(l3)
 
 

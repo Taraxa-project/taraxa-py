@@ -1,4 +1,4 @@
-from . import NODE_IP, NODE_PORT, JSONRPC, ID
+from . import NODE_HOST, NODE_PORT, JSONRPC, ID
 import requests
 import json
 import logging
@@ -6,22 +6,22 @@ import logging
 
 class Config():
 
-    def __init__(self, ip=NODE_IP, port=NODE_PORT, jsonrpc=JSONRPC, id=ID):
-        self.ip = ip
+    def __init__(self, host=NODE_HOST, port=NODE_PORT, jsonrpc=JSONRPC, id=ID):
+        self.host = host
         self.port = port
         self.jsonrpc = jsonrpc
         self.id = id
 
     def __str__(self):
-        return "ip:{},port:{},jsonrpc:{},id:{}".format(self.ip, self.port, self.jsonrpc, self.id)
+        return "host:{},port:{},jsonrpc:{},id:{}".format(self.host, self.port, self.jsonrpc, self.id)
 
 
 config = Config()
 
 
 def set(params):
-    if "ip" in params:
-        config.ip = params["ip"]
+    if "host" in params:
+        config.host = params["host"]
     if "port" in params:
         config.port = params["port"]
     if "jsonrpc" in params:
@@ -31,27 +31,27 @@ def set(params):
 
 
 def reset():
-    config.ip = NODE_IP
+    config.host = NODE_HOST
     config.port = NODE_PORT
     config.jsonrpc = JSONRPC
     config.id = ID
 
 
-def send(data, ip="", port=0):
-    if not ip:
-        ip = config.ip
-    if not port:
-        port = config.port
+def send(data, *args, **kwargs):
     if type(data) == dict:
         data = json.dumps(data)
     elif type(data) == str:
         pass
     else:
         raise Exception('send data must be json string or dict')
-    if ip.startswith('http') and not port:
-        url = f"{ip}"
+
+    host = kwargs.get("host", config.host)
+    port = kwargs.get("port", config.port)
+
+    if host.startswith('http') and not port:
+        url = f"{host}"
     else:
-        url = f"http://{ip}:{port}"
+        url = f"http://{host}:{port}"
 
     headers = {'Content-Type': 'application/json',
                'User-Agent': "Web3.py/5.2.2/<class 'web3.providers.rpc.HTTPProvider'>"}
@@ -77,9 +77,9 @@ def traxa_rpc(func):
         msg = message(jsonrpc, method, params, id)
 
         # 要提交的节点
-        ip = kwargs.get("ip", config.ip)
+        host = kwargs.get("host", config.host)
         port = kwargs.get("port", config.port)
-        r = send(msg, ip, port)
+        r = send(msg, {'host': host, 'port': port})
         return r.json()
 
     return wrap_func

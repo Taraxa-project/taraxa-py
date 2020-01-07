@@ -9,18 +9,18 @@ node_address = [
 
 
 def dagBlockLevel():
-    r = taraxa.dagBlockLevel(ip='35.224.183.106')
+    r = taraxa.dagBlockLevel(host='35.224.183.106')
     print(r)
 
 
 def dagBlockPeriod():
-    r = taraxa.dagBlockPeriod(ip='34.66.1.140')
+    r = taraxa.dagBlockPeriod(host='34.66.1.140')
     print(r)
 
 
-def getDagBlockByHash(hash, ip):
+def getDagBlockByHash(hash, host):
     b = taraxa.getDagBlockByHash(hash)
-    #print(b)
+    # print(b)
     print(' period: ', b['period'], ' level: ', b['level'], ' number: ', b['number'], ' hash: ',
           b['hash'])
 
@@ -45,13 +45,13 @@ def blockNumber():
 
 
 if __name__ == "__main__":
-    #dagBlockLevel()
-    #dagBlockPeriod()
+    # dagBlockLevel()
+    # dagBlockPeriod()
     #hash = '0x841a0296cf0afc3f5c281593af4528cf840744f6589760cdad9bed0fb3af477b'
-    #getDagBlockByLevel(3)
+    # getDagBlockByLevel(3)
     #hash = '0x326f8020ccd18e8ce783158926214a4ab1805b89855f80afb67a0dbe7bf385e3'
     hash = '0x478d82494a35aa2fb4eb6b6dd73b405eef37387c2873f4740a0fd3c14e811708'
-    getDagBlockByHash(hash, ip='127.0.0.1')
+    getDagBlockByHash(hash, host='127.0.0.1')
     # block = eth.getBlockByHash(
     #     '0xb0bdf5bf044fde7d5ec9633e82ff08a1e689aa63fea65af6ec655e91e1cb4d4b',
     #     fullTransactions=True)
