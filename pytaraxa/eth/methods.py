@@ -22,7 +22,7 @@ def hashrate(**kwargs):
     return number
 
 
-#TODO
+# TODO
 def gasPrice(**kwargs):
     r = eth_gasPrice(**kwargs)
     return r
@@ -34,7 +34,7 @@ def accounts(**kwargs):
 
 
 def getBalance(address, tag="latest", **kwargs):
-    r = eth_getBalance(address, tag)
+    r = eth_getBalance(address, tag, **kwargs)
     number = hex2int(r['result'])
     return number
 
@@ -45,20 +45,20 @@ def blockNumber(**kwargs):
     return number
 
 
-#no in taraxa rpc
+# no in taraxa rpc
 def getStorageAt(address, position, tag="latest", **kwargs):
     r = eth_getStorageAt(**kwargs)
     return r
 
 
-#no in taraxa rpc
+# no in taraxa rpc
 def getTransactionCount(address, tag="latest", **kwargs):
     r = eth_getTransactionCount(address, tag, **kwargs)
     number = hex2int(r['result'])
     return number
 
 
-#no in taraxa rpc
+# no in taraxa rpc
 def getBlockTransactionCountByHash(hash, **kwargs):
     r = eth_getTransactionCount(hash, **kwargs)
     number = hex2int(r['result'])
@@ -119,7 +119,8 @@ def getBlockByHash(hash, fullTransactions=False, **kwargs):
         'difficulty', 'gasUsed', 'nonce', 'number', 'size', 'timestamp', 'totalDifficulty'
     ]
     for key in block_key_number:
-        block[key] = hex2int(block[key])
+        if key in block:
+            block[key] = hex2int(block[key])
     return block
 
 
@@ -132,7 +133,8 @@ def getBlockByNumber(tag, fullTransactions=False, **kwargs):
         'difficulty', 'gasUsed', 'nonce', 'number', 'size', 'timestamp', 'totalDifficulty'
     ]
     for key in block_key_number:
-        block[key] = hex2int(block[key])
+        if key in block:
+            block[key] = hex2int(block[key])
     return block
 
 
@@ -146,8 +148,8 @@ def getTransactionByBlockHashAndIndex(hash, index, **kwargs):
     return r
 
 
-def getTransactionByBlockNumberAndIndex(tag, index, **kwargs):
-    r = eth_getTransactionByBlockNumberAndIndex(tag, index, **kwargs)
+def getTransactionByBlock(tag, index, **kwargs):
+    r = eth_getTransactionByBlock(tag, index, **kwargs)
     return r
 
 

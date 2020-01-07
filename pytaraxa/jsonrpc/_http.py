@@ -48,9 +48,17 @@ def send(data, ip="", port=0):
         pass
     else:
         raise Exception('send data must be json string or dict')
+    if ip.startswith('http') and not port:
+        url = f"{ip}"
+    else:
+        url = f"http://{ip}:{port}"
 
-    request = requests.post("http://{}:{}".format(ip, port), data=data)
-    return request
+    headers = {'Content-Type': 'application/json',
+               'User-Agent': "Web3.py/5.2.2/<class 'web3.providers.rpc.HTTPProvider'>"}
+
+    response = requests.post(url, data=data, headers=headers)
+
+    return response
 
 
 def message(jsonrpc, method, params, id):
@@ -61,14 +69,14 @@ def message(jsonrpc, method, params, id):
 def traxa_rpc(func):
 
     def wrap_func(*args, **kwargs):
-        #要提交的参数
-        jsonrpc = kwargs.get("jsonrpc", config.jsonrpc)  #默认参数
-        method = func.__name__  #jsonrpc方法名同函数名
+        # 要提交的参数
+        jsonrpc = kwargs.get("jsonrpc", config.jsonrpc)  # 默认参数
+        method = func.__name__  # jsonrpc方法名同函数名
         params = func(*args, **kwargs)
-        id = kwargs.get("id", config.id)  #默认参数
+        id = kwargs.get("id", config.id)  # 默认参数
         msg = message(jsonrpc, method, params, id)
 
-        #要提交的节点
+        # 要提交的节点
         ip = kwargs.get("ip", config.ip)
         port = kwargs.get("port", config.port)
         r = send(msg, ip, port)

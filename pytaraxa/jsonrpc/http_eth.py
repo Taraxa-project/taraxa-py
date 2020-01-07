@@ -182,7 +182,7 @@ def eth_getTransactionByBlockHashAndIndex(hash, index, **kwargs):
 
 
 @traxa_rpc
-def eth_getTransactionByBlockNumberAndIndex(tag, index, **kwargs):
+def eth_getTransactionByBlock(tag, index, **kwargs):
     tag = tag_check(tag)
     params = [tag, index]
     return params
@@ -280,9 +280,9 @@ def eth_getProof(address, storage_keys, tag, **kwargs):
     return params
 
 
-#=============
-#below is only taraxa rpc, not in eth
-#=============
+# =============
+# below is only taraxa rpc, not in eth
+# =============
 
 
 @traxa_rpc

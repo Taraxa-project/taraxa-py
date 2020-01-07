@@ -23,7 +23,7 @@ from .methods import getBlockByHash
 from .methods import getBlockByNumber
 from .methods import getTransactionByHash
 from .methods import getTransactionByBlockHashAndIndex
-from .methods import getTransactionByBlockNumberAndIndex
+from .methods import getTransactionByBlock
 from .methods import getTransactionReceipt
 from .methods import pendingTransactions
 from .methods import getUncleByBlockHashAndIndex

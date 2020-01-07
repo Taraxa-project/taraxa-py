@@ -1,3 +1,4 @@
+from path import workspace
 from pytaraxa import net
 
 

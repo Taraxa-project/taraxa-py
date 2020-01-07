@@ -1,3 +1,4 @@
+from path import workspace
 from pytaraxa import eth
 from pytaraxa import taraxa
 import pytaraxa.jsonrpc as rpc
@@ -60,10 +61,10 @@ def pendingTransactions():
 
 def sendTransaction():
     trx = {
-        'from': 's',  #eth.accounts()[0],
+        'from': 's',  # eth.accounts()[0],
         'to': node_address[2],
         'value': 10000,
-        'gasPrice': 's',  #eth.gasPrice(),
+        'gasPrice': 's',  # eth.gasPrice(),
         'gas': 100000,
         'nonce': 0
     }
@@ -76,7 +77,7 @@ def get_all_balance():
         print(eth.getBalance(add))
 
 
-#=============
+# =============
 def getDagBlockByHash(hash):
     r = eth.getDagBlockByHash(hash)
     print(r)
@@ -88,10 +89,10 @@ def getDagBlockByLevel():
 
 
 if __name__ == "__main__":
-    #get_all_balance()
-    #getBlockByNumber(1)
+    # get_all_balance()
+    # getBlockByNumber(1)
     #hash = '0xde804c1b7d2f24e6ae93aecb7f4868b95bea99c48999d378c739622456d490c1'
-    #getBlockByHash(hash)
+    # getBlockByHash(hash)
     #eth.set({"ip": "35.224.183.106"})
     try:
         blockNumber()
