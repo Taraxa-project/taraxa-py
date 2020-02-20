@@ -8,7 +8,7 @@ pipeline {
 
     stages {
         stage ("Generate Distribution Archives"){
-            when { branch 'master' }
+            when { branch 'release' }
             agent {
                 docker { image 'python:3'}
             }
@@ -19,7 +19,7 @@ pipeline {
             }
         }
         stage ("Upload to Test PyPi"){
-            when { branch 'master' }
+            when { branch 'release' }
             agent {
                 docker { image 'python:3'}
             }
