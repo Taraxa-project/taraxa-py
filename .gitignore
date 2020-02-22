@@ -4,3 +4,5 @@ taraxa_py.egg-info
 __pycache__
 *.pyc
 tmp
+.env
+scripts
