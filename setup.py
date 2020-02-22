@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-NAME = "pytaraxa"
+NAME = "taraxa-py"
 
 DESCRIPTION = "Taraxa blockchain  RPC client."
 
@@ -15,7 +15,7 @@ AUTHOR_EMAIL = "kai.he@taraxa.io"
 
 URL = "http://taraxa.io"
 
-VERSION = "0.0.4"
+VERSION = "0.0.5"
 
 LICENSE = "MIT"
 
