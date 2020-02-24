@@ -18,7 +18,7 @@ pipeline {
                 sh "python setup.py sdist bdist_wheel"
             }
         }
-        stage ("Upload to Test PyPi"){
+        stage ("Upload to PyPi"){
             when { branch 'release' }
             agent {
                 docker { image 'python:3'}
