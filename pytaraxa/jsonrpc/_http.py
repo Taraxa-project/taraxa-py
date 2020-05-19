@@ -45,10 +45,13 @@ def send(data, *args, **kwargs):
     else:
         raise Exception('send data must be json string or dict')
 
+    # print(kwargs)
     host = kwargs.get("host", config.host)
     port = kwargs.get("port", config.port)
 
-    if host.startswith('http') and not port:
+    # print(host)
+    # print(port)
+    if (host.startswith('http') or host.startswith('https')) and not port:
         url = f"{host}"
     else:
         url = f"http://{host}:{port}"
@@ -76,10 +79,12 @@ def traxa_rpc(func):
         id = kwargs.get("id", config.id)  # 默认参数
         msg = message(jsonrpc, method, params, id)
 
+        # print(kwargs)
+
         # 要提交的节点
         host = kwargs.get("host", config.host)
         port = kwargs.get("port", config.port)
-        r = send(msg, {'host': host, 'port': port})
+        r = send(msg, host=host, port=port)
         return r.json()
 
     return wrap_func

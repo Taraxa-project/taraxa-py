@@ -89,13 +89,14 @@ def getDagBlockByLevel():
 
 
 if __name__ == "__main__":
+    eth.set({"host": "64.225.42.78"})
+
     # get_all_balance()
     # getBlockByNumber(1)
-    #hash = '0xde804c1b7d2f24e6ae93aecb7f4868b95bea99c48999d378c739622456d490c1'
-    # getBlockByHash(hash)
-    #eth.set({"host": "35.224.183.106"})
-    try:
-        blockNumber()
-        accounts()
-    except Exception as e:
-        print(e)
+    hash = '0xc4714d5d3ac4b87602da4c46e301e491202035f81a1a4260a6988f8ef17ebb6b'
+    getBlockByHash(hash)
+    # try:
+    #     blockNumber()
+    #     accounts()
+    # except Exception as e:
+    #     print(e)

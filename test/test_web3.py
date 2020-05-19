@@ -1,4 +1,12 @@
+from path import workspace
 from pytaraxa import web3
+
+w3 = web3.Web3(host="64.225.42.78", port=7777)
+
+
+def blockNumber():
+    r = w3.eth.blockNumber()
+    print(r)
 
 
 def clientVersion():
@@ -13,4 +21,5 @@ def sha3():
 
 
 if __name__ == "__main__":
-    sha3()
+    blockNumber()
+    # clientVersion()
