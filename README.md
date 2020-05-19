@@ -1,8 +1,8 @@
-# pytaraxa
+# taraxa-py
 
 Taraxa RPC client in python.  
 
-pytaraxa pypi address: [pytaraxa](https://pypi.org/project/pytaraxa/)  
+taraxa-py pypi address: [taraxa-py](https://pypi.org/project/taraxa-py/)  
 
 Taraxa official website: [taraxa.io](https://taraxa.io)  
 ## install
@@ -14,7 +14,7 @@ python setup.py install
 ```
 or install from pypi [pytaraxa](https://pypi.org/project/pytaraxa/).  
 ```
-pip install pytaraxa
+pip install taraxa-py
 ```
 ## config  
 
@@ -68,10 +68,6 @@ for all methods, if no parameter given, default will be used.
     ```
 
 ## usage
-
-
-
-
 
 - 1.low level use  
     input data can be json string or dict.  
