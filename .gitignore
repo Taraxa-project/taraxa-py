@@ -1,6 +1,6 @@
 build
 dist
-taraxa_py.egg-info
+pytaraxa.egg-info
 __pycache__
 *.pyc
 tmp
