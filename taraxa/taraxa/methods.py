@@ -4,7 +4,8 @@ from ..jsonrpc.http_taraxa import *
 def dag_block_hex2int(block):
     keys = ['level', 'period', 'number', 'timestamp']
     for key in keys:
-        block[key] = hex2int(block[key])
+        if block[key]:
+            block[key] = hex2int(block[key])
     return block
 
 
